@@ -36,26 +36,27 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const services = [
-  { icon: Home, name: "Loft Conversion" },
-  { icon: Building2, name: "Kitchen Extensions" },
-  { icon: Layers, name: "Plastering" },
-  { icon: Brush, name: "Skimming" },
-  { icon: Hammer, name: "Carpentry" },
-  { icon: Ruler, name: "Wall & Floor Tiling" },
-  { icon: Construction, name: "Driveways & Slabs" },
-  { icon: Drill, name: "Brick & Block Work" },
-  { icon: Home, name: "Roofing & Guttering" },
-  { icon: Bath, name: "Bathroom Fitting" },
-  { icon: Layers, name: "Wood Flooring" },
-  { icon: DoorOpen, name: "Conservatory" },
-  { icon: Wrench, name: "Plumbing" },
-  { icon: Zap, name: "Electric" },
-  { icon: Fence, name: "Fencing" },
-  { icon: Flower2, name: "Gardening" },
-  { icon: Paintbrush, name: "Painting" },
-  { icon: Sparkles, name: "Decorating" },
-  { icon: Trees, name: "Garden Sheds & Patio" },
+const serviceCategories = [
+  {
+    title: "Extensions & Conversions",
+    items: ["Loft Conversion", "Kitchen Extensions", "Conservatory"],
+  },
+  {
+    title: "Structure & Exterior",
+    items: ["Brick & Block Work", "Roofing & Guttering", "Driveways & Slabs"],
+  },
+  {
+    title: "Interior Finishes",
+    items: ["Plastering", "Skimming", "Wall & Floor Tiling", "Wood Flooring", "Bathroom Fitting"],
+  },
+  {
+    title: "Trades & Repairs",
+    items: ["Carpentry", "Plumbing", "Electric", "Painting", "Decorating"],
+  },
+  {
+    title: "Gardens & Outdoor",
+    items: ["Fencing", "Gardening", "Garden Sheds & Patio"],
+  },
 ];
 
 const gallery = [
