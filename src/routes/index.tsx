@@ -576,7 +576,7 @@ function Contact() {
                 className="mt-2 w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-gold"
               >
                 <option value="" disabled>Select a service</option>
-                {services.map((s) => <option key={s.name}>{s.name}</option>)}
+                {serviceCategories.flatMap((c) => c.items).map((name) => <option key={name}>{name}</option>)}
                 <option>Other / Multiple</option>
               </select>
             </div>
