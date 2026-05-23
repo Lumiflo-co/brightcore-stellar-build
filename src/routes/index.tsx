@@ -36,26 +36,27 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const services = [
-  { icon: Home, name: "Loft Conversion" },
-  { icon: Building2, name: "Kitchen Extensions" },
-  { icon: Layers, name: "Plastering" },
-  { icon: Brush, name: "Skimming" },
-  { icon: Hammer, name: "Carpentry" },
-  { icon: Ruler, name: "Wall & Floor Tiling" },
-  { icon: Construction, name: "Driveways & Slabs" },
-  { icon: Drill, name: "Brick & Block Work" },
-  { icon: Home, name: "Roofing & Guttering" },
-  { icon: Bath, name: "Bathroom Fitting" },
-  { icon: Layers, name: "Wood Flooring" },
-  { icon: DoorOpen, name: "Conservatory" },
-  { icon: Wrench, name: "Plumbing" },
-  { icon: Zap, name: "Electric" },
-  { icon: Fence, name: "Fencing" },
-  { icon: Flower2, name: "Gardening" },
-  { icon: Paintbrush, name: "Painting" },
-  { icon: Sparkles, name: "Decorating" },
-  { icon: Trees, name: "Garden Sheds & Patio" },
+const serviceCategories = [
+  {
+    title: "Extensions & Conversions",
+    items: ["Loft Conversion", "Kitchen Extensions", "Conservatory"],
+  },
+  {
+    title: "Structure & Exterior",
+    items: ["Brick & Block Work", "Roofing & Guttering", "Driveways & Slabs"],
+  },
+  {
+    title: "Interior Finishes",
+    items: ["Plastering", "Skimming", "Wall & Floor Tiling", "Wood Flooring", "Bathroom Fitting"],
+  },
+  {
+    title: "Trades & Repairs",
+    items: ["Carpentry", "Plumbing", "Electric", "Painting", "Decorating"],
+  },
+  {
+    title: "Gardens & Outdoor",
+    items: ["Fencing", "Gardening", "Garden Sheds & Patio"],
+  },
 ];
 
 const gallery = [
@@ -243,17 +244,22 @@ function Services() {
           title={<>Complete <span className="text-gold">Building Services</span></>}
           subtitle="One trusted team for every job around your home — from small repairs to full renovations."
         />
-        <div className="mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-          {services.map((s, i) => (
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {serviceCategories.map((cat, i) => (
             <div
-              key={s.name}
-              className="reveal group flex flex-col items-center rounded-xl border border-border bg-card/60 p-3 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/30 hover:bg-card"
-              style={{ transitionDelay: `${(i % 6) * 30}ms` }}
+              key={cat.title}
+              className="reveal rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:border-gold/30 hover:bg-card"
+              style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-red text-primary-foreground">
-                <s.icon className="h-4 w-4" />
-              </span>
-              <div className="mt-2 text-[11px] font-bold uppercase leading-tight tracking-wider text-foreground">{s.name}</div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-gold">{cat.title}</h3>
+              <ul className="mt-4 grid gap-2">
+                {cat.items.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-foreground">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -570,7 +576,7 @@ function Contact() {
                 className="mt-2 w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-gold"
               >
                 <option value="" disabled>Select a service</option>
-                {services.map((s) => <option key={s.name}>{s.name}</option>)}
+                {serviceCategories.flatMap((c) => c.items).map((name) => <option key={name}>{name}</option>)}
                 <option>Other / Multiple</option>
               </select>
             </div>
