@@ -244,17 +244,22 @@ function Services() {
           title={<>Complete <span className="text-gold">Building Services</span></>}
           subtitle="One trusted team for every job around your home — from small repairs to full renovations."
         />
-        <div className="mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-          {services.map((s, i) => (
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {serviceCategories.map((cat, i) => (
             <div
-              key={s.name}
-              className="reveal group flex flex-col items-center rounded-xl border border-border bg-card/60 p-3 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/30 hover:bg-card"
-              style={{ transitionDelay: `${(i % 6) * 30}ms` }}
+              key={cat.title}
+              className="reveal rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:border-gold/30 hover:bg-card"
+              style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-red text-primary-foreground">
-                <s.icon className="h-4 w-4" />
-              </span>
-              <div className="mt-2 text-[11px] font-bold uppercase leading-tight tracking-wider text-foreground">{s.name}</div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-gold">{cat.title}</h3>
+              <ul className="mt-4 grid gap-2">
+                {cat.items.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-foreground">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
