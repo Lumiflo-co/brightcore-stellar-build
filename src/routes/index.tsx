@@ -92,6 +92,11 @@ const testimonials = [
 
 function HomePage() {
   useReveal();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, []);
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
       <Toaster theme="dark" position="top-center" richColors />
