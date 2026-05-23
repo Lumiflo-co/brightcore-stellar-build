@@ -125,32 +125,32 @@ function Hero() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, oklch(0.10 0.01 25 / 0.55), oklch(0.10 0.01 25 / 0.85))" }} />
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:gap-12 sm:px-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8">
         <div className="animate-fade-up">
           <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
             <Sparkles className="h-3.5 w-3.5" /> London's Trusted Builders
           </span>
-          <h1 className="mt-6 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             Reliable <span className="text-gold">Construction</span><br />
             Services You Can <span className="text-gold">Trust</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Loft conversions, extensions, roofing, bathrooms, brickwork, driveways
             and complete building solutions across London — delivered to a premium
             standard, every time.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-red px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
+              className="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-red px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] sm:flex-none sm:px-6"
             >
               Get Your Free Estimate
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="tel:07405326484"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-background/30 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-gold backdrop-blur transition-colors hover:bg-gold hover:text-gold-foreground"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-gold/40 bg-background/30 px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-gold backdrop-blur transition-colors hover:bg-gold hover:text-gold-foreground sm:flex-none sm:px-6"
             >
               <Phone className="h-4 w-4" /> Call Now
             </a>
@@ -166,7 +166,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden animate-fade-up lg:block" style={{ animationDelay: "120ms" }}>
           <div className="relative">
             <div className="absolute -inset-6 rounded-3xl bg-gradient-red opacity-20 blur-3xl" />
             <div className="glass relative rounded-3xl p-6 shadow-elev">
@@ -248,7 +248,7 @@ function Services() {
           {serviceCategories.map((cat, i) => (
             <div
               key={cat.title}
-              className="reveal rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:border-gold/30 hover:bg-card"
+              className="reveal-zoom rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-card hover:shadow-glow"
               style={{ transitionDelay: `${i * 60}ms` }}
             >
               <h3 className="text-sm font-bold uppercase tracking-wider text-gold">{cat.title}</h3>
@@ -272,14 +272,14 @@ function About() {
   return (
     <section id="about" className="relative py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-2 lg:items-center lg:px-8">
-        <div className="reveal relative">
+        <div className="reveal-left relative">
           <div className="absolute -inset-4 rounded-3xl bg-gradient-red opacity-15 blur-3xl" />
           <div className="relative grid grid-cols-2 gap-4">
             <img src={imgConserv} alt="Conservatory" width={500} height={600} loading="lazy" className="aspect-[4/5] w-full rounded-2xl object-cover shadow-elev" />
             <img src={imgBrick} alt="Brickwork" width={500} height={500} loading="lazy" className="mt-12 aspect-square w-full rounded-2xl object-cover shadow-elev" />
           </div>
         </div>
-        <div className="reveal">
+        <div className="reveal-right">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold">About Bright Core</span>
           <h2 className="mt-3 font-display text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
             Built On <span className="text-gold">Quality</span> & <span className="text-gold">Trust</span>
@@ -332,14 +332,15 @@ function Gallery() {
           title={<>A Showcase Of <span className="text-gold">Our Work</span></>}
           subtitle="A selection of completed work across London — extensions, lofts, bathrooms, brickwork and landscaping."
         />
-        <div className="reveal mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
           {gallery.map((g, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`group relative overflow-hidden rounded-2xl border border-border focus:outline-none focus:ring-2 focus:ring-gold ${
+              className={`reveal-blur group relative overflow-hidden rounded-2xl border border-border focus:outline-none focus:ring-2 focus:ring-gold ${
                 i % 5 === 0 ? "row-span-2 md:col-span-2 md:row-span-2" : ""
               }`}
+              style={{ transitionDelay: `${(i % 4) * 80}ms` }}
             >
               <img
                 src={g.src}
@@ -400,7 +401,7 @@ function WhyUs() {
           {reasons.map((r, i) => (
             <div
               key={r.t}
-              className="reveal group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow"
+              className="reveal-blur group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow"
               style={{ transitionDelay: `${(i % 4) * 50}ms` }}
             >
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-gold text-gold-foreground">
@@ -428,7 +429,7 @@ function Testimonials() {
           {testimonials.map((t, i) => (
             <figure
               key={t.name}
-              className="reveal relative rounded-2xl border border-border bg-card p-7 shadow-elev"
+              className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} relative rounded-2xl border border-border bg-card p-6 shadow-elev sm:p-7`}
               style={{ transitionDelay: `${i * 60}ms` }}
             >
               <Quote className="absolute right-6 top-6 h-10 w-10 text-gold/20" />
@@ -499,7 +500,7 @@ function Contact() {
         style={{ background: "radial-gradient(80% 60% at 100% 0%, oklch(0.30 0.14 25 / 0.45), transparent 70%)" }}
       />
       <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-8">
-        <div className="reveal">
+        <div className="reveal-left">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Free Estimate</span>
           <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-tight tracking-tight sm:text-5xl">
             Get Your <span className="text-gold">Free Estimate</span> Today
@@ -556,7 +557,7 @@ function Contact() {
 
         <form
           onSubmit={onSubmit}
-          className="reveal glass rounded-3xl p-6 shadow-elev sm:p-8"
+          className="reveal-right glass rounded-3xl p-6 shadow-elev sm:p-8"
         >
           <h3 className="font-display text-2xl font-extrabold uppercase tracking-tight text-foreground">Request A Quote</h3>
           <p className="mt-1 text-sm text-muted-foreground">All fields marked * are required.</p>

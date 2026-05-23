@@ -110,5 +110,62 @@
 .animate-fade-up { animation: fade-up 0.7s cubic-bezier(.2,.7,.2,1) both; }
 .animate-float { animation: float-pulse 3s ease-in-out infinite; }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-.reveal.in { opacity: 1; transform: none; }
+/* Scroll reveal — base + directional variants */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-blur {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  transition:
+    opacity .9s cubic-bezier(.2,.7,.2,1),
+    transform .9s cubic-bezier(.2,.7,.2,1),
+    filter .9s cubic-bezier(.2,.7,.2,1);
+}
+.reveal       { transform: translateY(36px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.reveal-zoom  { transform: scale(.92); }
+.reveal-blur  { transform: translateY(24px); filter: blur(8px); }
+
+.reveal.in,
+.reveal-left.in,
+.reveal-right.in,
+.reveal-zoom.in,
+.reveal-blur.in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Mobile menu open / close */
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px) scaleY(.96); }
+  to   { opacity: 1; transform: translateY(0)    scaleY(1); }
+}
+@keyframes menu-out {
+  from { opacity: 1; transform: translateY(0)    scaleY(1); }
+  to   { opacity: 0; transform: translateY(-8px) scaleY(.96); }
+}
+@keyframes menu-item-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.menu-panel-in  { transform-origin: top center; animation: menu-in  .32s cubic-bezier(.22,1,.36,1) both; }
+.menu-panel-out { transform-origin: top center; animation: menu-out .22s cubic-bezier(.4,0,.7,.2) both; }
+.menu-item-anim { animation: menu-item-in .42s cubic-bezier(.22,1,.36,1) both; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-blur {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .animate-fade-up, .animate-float,
+  .menu-panel-in, .menu-panel-out, .menu-item-anim {
+    animation: none !important;
+  }
+}
