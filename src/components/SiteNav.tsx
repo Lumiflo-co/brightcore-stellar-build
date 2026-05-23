@@ -67,7 +67,7 @@ export function SiteNav() {
         </div>
       </div>
       {open && (
-        <div className="glass border-t border-border lg:hidden">
+        <div className="bg-background/95 backdrop-blur-xl border-t border-border shadow-elev lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4">
             {links.map((l) => (
               <a
