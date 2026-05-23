@@ -131,7 +131,7 @@ function Hero() {
           </span>
           <h1 className="mt-6 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             Reliable <span className="text-gold">Construction</span><br />
-            Services You Can <span className="bg-gradient-red bg-clip-text text-transparent">Trust</span>
+            Services You Can <span className="text-gold">Trust</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Loft conversions, extensions, roofing, bathrooms, brickwork, driveways
@@ -236,28 +236,24 @@ function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: R
 
 function Services() {
   return (
-    <section id="services" className="relative py-24 lg:py-32">
+    <section id="services" className="relative py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="What We Do"
           title={<>Complete <span className="text-gold">Building Services</span></>}
           subtitle="One trusted team for every job around your home — from small repairs to full renovations."
         />
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
           {services.map((s, i) => (
             <div
               key={s.name}
-              className="reveal group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow"
-              style={{ transitionDelay: `${(i % 4) * 40}ms` }}
+              className="reveal group flex flex-col items-center rounded-xl border border-border bg-card/60 p-3 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/30 hover:bg-card"
+              style={{ transitionDelay: `${(i % 6) * 30}ms` }}
             >
-              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-red text-primary-foreground shadow-glow">
-                <s.icon className="h-6 w-6" />
+              <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-red text-primary-foreground">
+                <s.icon className="h-4 w-4" />
               </span>
-              <div className="mt-4 text-sm font-bold uppercase tracking-wider text-foreground">{s.name}</div>
-              <div className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-gold opacity-0 transition-opacity group-hover:opacity-100">
-                Free Quote <ArrowRight className="h-3 w-3" />
-              </div>
+              <div className="mt-2 text-[11px] font-bold uppercase leading-tight tracking-wider text-foreground">{s.name}</div>
             </div>
           ))}
         </div>
@@ -280,7 +276,7 @@ function About() {
         <div className="reveal">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold">About Bright Core</span>
           <h2 className="mt-3 font-display text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
-            Built On <span className="text-gold">Quality</span> & <span className="bg-gradient-red bg-clip-text text-transparent">Trust</span>
+            Built On <span className="text-gold">Quality</span> & <span className="text-gold">Trust</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
             Bright Core Construction provides reliable, high-quality building and
