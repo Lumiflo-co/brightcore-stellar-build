@@ -36,14 +36,6 @@ export function SiteNav() {
     };
   }, [open, rendered]);
 
-  // Lock body scroll while menu is open
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [open]);
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
