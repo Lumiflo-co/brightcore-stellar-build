@@ -112,7 +112,7 @@ function HomePage() {
 
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-28 pb-24 lg:pt-36 lg:pb-32">
+    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16 lg:min-h-screen lg:pt-36 lg:pb-24">
       <div className="absolute inset-0 -z-10">
         <img
           src={hero}
@@ -140,17 +140,17 @@ function Hero() {
             standard, every time.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="#contact"
-              className="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-red px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] sm:flex-none sm:px-6"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-red px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] sm:w-auto"
             >
               Get Your Free Estimate
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="tel:07405326484"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-gold/40 bg-background/30 px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-gold backdrop-blur transition-colors hover:bg-gold hover:text-gold-foreground sm:flex-none sm:px-6"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 bg-background/30 px-6 py-4 text-sm font-bold uppercase tracking-wider text-gold backdrop-blur transition-colors hover:bg-gold hover:text-gold-foreground sm:w-auto"
             >
               <Phone className="h-4 w-4" /> Call Now
             </a>
