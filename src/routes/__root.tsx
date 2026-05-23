@@ -76,9 +76,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Trusted London builders. Loft conversions, extensions, roofing, bathrooms, brickwork, driveways. Free estimates. Guaranteed workmanship." },
       { name: "author", content: "Bright Core Construction" },
       { property: "og:title", content: "Bright Core Construction — London Builders" },
-      { property: "og:description", content: "Premium building & renovation services across London. Free estimates. Guaranteed work." },
+      { property: "og:description", content: "Trusted London builders. Loft conversions, extensions, roofing, bathrooms, brickwork, driveways. Free estimates. Guaranteed workmanship." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Bright Core Construction — London Builders" },
+      { name: "twitter:description", content: "Trusted London builders. Loft conversions, extensions, roofing, bathrooms, brickwork, driveways. Free estimates. Guaranteed workmanship." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c2a3c16b-e9c5-41e4-9a1f-aa36e077d158/id-preview-eee5fafc--c3d9b401-3dbb-4060-85c1-33aaf4712d41.lovable.app-1779565728842.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c2a3c16b-e9c5-41e4-9a1f-aa36e077d158/id-preview-eee5fafc--c3d9b401-3dbb-4060-85c1-33aaf4712d41.lovable.app-1779565728842.png" },
     ],
     links: [
       {
