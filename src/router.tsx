@@ -12,5 +12,11 @@ export const getRouter = () => {
     defaultPreloadStaleTime: 0,
   });
 
+  // TanStack still performs one default "scroll to top" after the initial
+  // route render, even when restoration caching is disabled. If a visitor
+  // scrolls immediately after refreshing, that delayed initial reset can pull
+  // them back to the hero. Skip only that first automatic reset.
+  router.resetNextScroll = false;
+
   return router;
 };

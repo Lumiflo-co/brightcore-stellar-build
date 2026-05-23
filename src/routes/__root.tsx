@@ -100,6 +100,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if ('scrollRestoration' in history) history.scrollRestoration = 'manual';",
+          }}
+        />
         <HeadContent />
       </head>
       <body>
