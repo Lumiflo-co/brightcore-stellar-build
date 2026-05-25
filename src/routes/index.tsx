@@ -2,9 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Phone, Mail, MapPin, ShieldCheck, Award, Users, Sparkles, CheckCircle2,
-  Hammer, Home, Paintbrush, Wrench, Layers, Zap, Trees, Bath, Building2,
-  Construction, Ruler, Drill, Brush, DoorOpen, Fence, Flower2, ArrowRight,
-  Star, Quote, X, Loader2, Clock,
+  Hammer, ArrowRight, Star, X, Loader2, Clock,
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { SiteNav } from "@/components/SiteNav";
@@ -54,8 +52,7 @@ export const Route = createFileRoute("/")({
           "@type": "GeneralContractor",
           "@id": "https://brightcore.lumiflo.co.uk/#business",
           name: "Bright Core Construction",
-          description:
-            "Trusted London builders specialising in loft conversions, extensions, roofing, bathrooms, brickwork, driveways and full renovations. Serving Barking, Upney, Ilford, Romford, Walthamstow and surrounding London areas.",
+          description: "Trusted London builders specialising in loft conversions, extensions, roofing, bathrooms, brickwork, driveways and full renovations. Serving Barking, Upney, Ilford, Romford, Walthamstow and surrounding London areas.",
           url: "https://brightcore.lumiflo.co.uk/",
           telephone: ["+447405326484", "+447985785177"],
           email: "corebright.construction@gmail.com",
@@ -179,14 +176,15 @@ function HomePage() {
   }, []);
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
-      <Toaster theme="dark" position="top-center" richColors />
+      <Toaster position="top-center" richColors />
       <SiteNav />
       <Hero />
-      <TrustBar />
+      <TrustBand />
       <Services />
       <About />
       <Gallery />
       <WhyUs />
+      <Process />
       <Testimonials />
       <Contact />
       <Footer />
@@ -195,213 +193,204 @@ function HomePage() {
   );
 }
 
+/* ── Hero ───────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16 lg:min-h-screen lg:pt-36 lg:pb-24">
-      <div className="absolute inset-0 -z-10">
-        <img
-          src={hero}
-          alt="Bright Core Construction team building a home extension"
-          width={1920}
-          height={1080}
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-hero" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, oklch(0.10 0.01 25 / 0.55), oklch(0.10 0.01 25 / 0.85))" }} />
-      </div>
-
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:gap-12 sm:px-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8">
+    <section className="flex min-h-[100svh] flex-col overflow-hidden lg:flex-row">
+      {/* Left: navy panel */}
+      <div className="bg-navy flex flex-col justify-center px-6 pt-28 pb-16 sm:px-10 lg:w-[58%] lg:px-16 lg:pt-0 lg:pb-0 xl:px-24">
         <div className="animate-fade-up">
-          <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-            <Sparkles className="h-3.5 w-3.5" /> London's Trusted Builders
+          <span className="inline-block text-xs font-semibold uppercase tracking-[0.22em] text-orange/90">
+            Barking · Ilford · East London
           </span>
-          <h1 className="mt-6 font-display text-4xl font-extrabold uppercase leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            Reliable <span className="text-gold">Construction</span><br />
-            Services You Can <span className="text-gold">Trust</span>
+
+          <h1 className="mt-5 font-display text-5xl font-bold leading-[0.95] text-white sm:text-6xl lg:text-7xl xl:text-[5.25rem]">
+            Built<br />
+            Properly.<br />
+            <span className="text-orange">Built to<br />Last.</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Loft conversions, extensions, roofing, bathrooms, brickwork, driveways
-            and complete building solutions across London — delivered to a premium
-            standard, every time.
+
+          <p className="mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
+            Loft conversions, extensions, roofing, bathrooms &amp; driveways
+            across East London. Free estimates, guaranteed workmanship.
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          {/* Star rating */}
+          <div className="mt-5 flex items-center gap-2.5">
+            <div className="flex text-orange" aria-label="5 stars">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-current" />
+              ))}
+            </div>
+            <span className="text-sm font-medium text-white/80">
+              5.0 · Trusted by East London homeowners
+            </span>
+          </div>
+
+          {/* CTAs */}
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="#contact"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-red px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-orange px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Get a Quote
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              Get Free Estimate
+              <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="tel:07405326484"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 bg-background/30 px-6 py-4 text-sm font-bold uppercase tracking-wider text-gold backdrop-blur transition-colors hover:bg-gold hover:text-gold-foreground sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/50 hover:bg-white/10"
             >
-              <Phone className="h-4 w-4" /> Call Now
-            </a>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-            <a href="tel:07405326484" className="flex items-center gap-2 font-semibold text-foreground hover:text-gold">
-              <Phone className="h-4 w-4 text-gold" /> 07405 326484
-            </a>
-            <a href="tel:07985785177" className="flex items-center gap-2 font-semibold text-foreground hover:text-gold">
-              <Phone className="h-4 w-4 text-gold" /> 07985 785177
+              <Phone className="h-4 w-4" />
+              07405 326484
             </a>
           </div>
         </div>
+      </div>
 
-        <div className="hidden animate-fade-up lg:block" style={{ animationDelay: "120ms" }}>
-          <div className="relative">
-            <div className="absolute -inset-6 rounded-3xl bg-gradient-red opacity-20 blur-3xl" />
-            <div className="glass relative rounded-3xl p-6 shadow-elev">
-              <div className="grid grid-cols-2 gap-3">
-                {[imgKitchen, imgBath, imgConserv, imgBrick].map((s, i) => (
-                  <img
-                    key={i}
-                    src={s}
-                    alt=""
-                    loading="lazy"
-                    width={400}
-                    height={400}
-                    className="aspect-square w-full rounded-xl object-cover"
-                  />
-                ))}
-              </div>
-              <div className="mt-5 flex items-center justify-between rounded-xl bg-background/60 p-4">
-                <div>
-                  <div className="text-2xl font-extrabold text-gold">100%</div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Workmanship Guarantee</div>
-                </div>
-                <div className="h-10 w-px bg-border" />
-                <div>
-                  <div className="text-2xl font-extrabold text-gold">Free</div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">No-Obligation Quotes</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Right: hero image */}
+      <div className="relative h-64 overflow-hidden lg:h-auto lg:flex-1">
+        <img
+          src={hero}
+          alt="Bright Core Construction team at work"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {/* Orange accent strip on left edge */}
+        <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-orange" />
       </div>
     </section>
   );
 }
 
-function TrustBar() {
-  const items = [
-    { icon: CheckCircle2, t: "Free Estimates" },
-    { icon: ShieldCheck, t: "Guaranteed Work" },
-    { icon: Users, t: "Experienced Team" },
-    { icon: Award, t: "High Quality Finish" },
-  ];
+/* ── Trust Band ─────────────────────────────────────────── */
+function TrustBand() {
+  const items = ["Free Estimates", "Guaranteed Workmanship", "15+ Years Experience", "500+ Projects Delivered", "East London Based"];
   return (
-    <section className="border-y border-border bg-card/40">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-5 py-8 sm:grid-cols-4 lg:px-8">
-        {items.map(({ icon: Icon, t }) => (
-          <div key={t} className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-red text-primary-foreground">
-              <Icon className="h-5 w-5" />
-            </span>
-            <span className="text-sm font-semibold uppercase tracking-wider text-foreground">{t}</span>
-          </div>
+    <div className="bg-navy border-t border-white/10">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-5 py-4 lg:px-8">
+        {items.map((item, i) => (
+          <span key={item} className="flex items-center gap-2 text-sm font-medium text-white/80">
+            {i > 0 && <span className="hidden text-white/30 sm:inline">·</span>}
+            {item}
+          </span>
         ))}
       </div>
-    </section>
-  );
-}
-
-function SectionHeader({ eyebrow, title, subtitle }: { eyebrow: string; title: React.ReactNode; subtitle?: string }) {
-  return (
-    <div className="reveal mx-auto max-w-2xl text-center">
-      <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold">{eyebrow}</span>
-      <h2 className="mt-3 font-display text-4xl font-extrabold uppercase tracking-tight text-foreground sm:text-5xl">{title}</h2>
-      {subtitle && <p className="mt-4 text-base text-muted-foreground">{subtitle}</p>}
     </div>
   );
 }
 
+/* ── Services ───────────────────────────────────────────── */
 function Services() {
   return (
-    <section id="services" className="relative py-16 lg:py-24">
+    <section id="services" className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeader
-          eyebrow="What We Do"
-          title={<>Complete <span className="text-gold">Building Services</span></>}
-          subtitle="One trusted team for every job around your home — from small repairs to full renovations."
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {serviceCategories.map((cat, i) => (
-            <div
-              key={cat.title}
-              className="reveal-zoom rounded-2xl border border-border bg-card/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-card hover:shadow-glow"
-              style={{ transitionDelay: `${i * 60}ms` }}
+        <div className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+          {/* Sticky left */}
+          <div className="reveal-left lg:sticky lg:top-32 lg:self-start">
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">What We Do</span>
+            <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-navy sm:text-5xl">
+              Everything your home needs.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              From a single room renovation to a full extension — we handle every trade in-house with one trusted team and one point of contact.
+            </p>
+            <a
+              href="#contact"
+              className="mt-8 inline-flex items-center gap-2 rounded-md bg-navy px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              <h3 className="text-sm font-bold uppercase tracking-wider text-gold">{cat.title}</h3>
-              <ul className="mt-4 grid gap-2">
-                {cat.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-foreground">
-                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-gold" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function About() {
-  return (
-    <section id="about" className="relative py-24 lg:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-2 lg:items-center lg:px-8">
-        <div className="reveal-left relative">
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-red opacity-15 blur-3xl" />
-          <div className="relative grid grid-cols-2 gap-4">
-            <img src={imgConserv} alt="Conservatory" width={500} height={600} loading="lazy" className="aspect-[4/5] w-full rounded-2xl object-cover shadow-elev" />
-            <img src={imgBrick} alt="Brickwork" width={500} height={500} loading="lazy" className="mt-12 aspect-square w-full rounded-2xl object-cover shadow-elev" />
+              Get a Free Quote <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-        </div>
-        <div className="reveal-right">
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold">About Bright Core</span>
-          <h2 className="mt-3 font-display text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
-            Built On <span className="text-gold">Quality</span> & <span className="text-gold">Trust</span>
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Bright Core Construction provides reliable, high-quality building and
-            renovation services with attention to detail and customer satisfaction
-            at the heart of every project. From loft conversions and extensions to
-            roofing, bathrooms and landscaping, we deliver professional workmanship
-            with guaranteed results.
-          </p>
-          <div className="mt-8 grid grid-cols-2 gap-4">
-            {[
-              { n: "15+", t: "Years On The Tools" },
-              { n: "500+", t: "Projects Delivered" },
-              { n: "100%", t: "Guaranteed Work" },
-              { n: "Free", t: "Estimates Always" },
-            ].map((s) => (
-              <div key={s.t} className="rounded-xl border border-border bg-card p-5">
-                <div className="font-display text-3xl font-extrabold text-gold">{s.n}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.t}</div>
+
+          {/* Service list */}
+          <div className="reveal-right divide-y divide-border">
+            {serviceCategories.map((cat, i) => (
+              <div key={cat.title} className="py-7 first:pt-0 last:pb-0">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-display text-sm font-bold text-orange">
+                    0{i + 1}
+                  </span>
+                  <h3 className="font-display text-xl font-bold text-navy">{cat.title}</h3>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2 pl-9">
+                  {cat.items.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded border border-border bg-surface px-3 py-1 text-sm text-muted-foreground"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-            {["Professional workmanship", "Residential building specialists", "Free, honest estimates", "Fully guaranteed work"].map((p) => (
-              <li key={p} className="flex items-center gap-2 text-sm text-foreground">
-                <CheckCircle2 className="h-4 w-4 text-gold" /> {p}
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
   );
 }
 
+/* ── About / Stats ──────────────────────────────────────── */
+function About() {
+  return (
+    <section id="about" className="bg-navy py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
+          {/* Photo grid */}
+          <div className="reveal-left grid grid-cols-2 gap-3">
+            {[imgConserv, imgBrick, imgLoft, imgKitchen].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                loading="lazy"
+                className="aspect-square w-full rounded-lg object-cover"
+              />
+            ))}
+          </div>
+
+          {/* Content */}
+          <div className="reveal-right">
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">About Bright Core</span>
+            <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+              Built on quality &amp; trust
+            </h2>
+            <p className="mt-5 leading-relaxed text-white/65">
+              Bright Core Construction provides reliable, high-quality building and renovation services
+              with attention to detail and customer satisfaction at the heart of every project. From loft
+              conversions and extensions to roofing, bathrooms and landscaping — we deliver professional
+              workmanship with guaranteed results.
+            </p>
+
+            {/* Stats */}
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {[
+                { n: "15+", t: "Years on the tools" },
+                { n: "500+", t: "Projects delivered" },
+                { n: "100%", t: "Guaranteed work" },
+                { n: "Free", t: "Estimates always" },
+              ].map((s) => (
+                <div key={s.t} className="rounded-lg border border-white/15 p-5">
+                  <div className="font-display text-4xl font-bold text-orange">{s.n}</div>
+                  <div className="mt-1 text-sm text-white/55">{s.t}</div>
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              className="mt-8 inline-flex items-center gap-2 rounded-md bg-orange px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Start Your Project <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Gallery ────────────────────────────────────────────── */
 function Gallery() {
   const [active, setActive] = useState<number | null>(null);
   useEffect(() => {
@@ -409,58 +398,66 @@ function Gallery() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
   return (
-    <section id="gallery" className="relative py-24 lg:py-32">
+    <section id="gallery" className="bg-surface py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeader
-          eyebrow="Recent Projects"
-          title={<>A Showcase Of <span className="text-gold">Our Work</span></>}
-          subtitle="A selection of completed work across London — extensions, lofts, bathrooms, brickwork and landscaping."
-        />
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {/* Header */}
+        <div className="reveal mb-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">Our Work</span>
+            <h2 className="mt-3 font-display text-4xl font-bold text-navy sm:text-5xl">Recent Projects</h2>
+          </div>
+          <p className="text-sm text-muted-foreground sm:text-right">
+            Extensions, lofts, bathrooms, brickwork &amp; landscaping<br className="hidden sm:block" /> across East London
+          </p>
+        </div>
+
+        {/* Masonry grid */}
+        <div className="columns-2 gap-3 md:columns-3 lg:columns-4">
           {gallery.map((g, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`reveal-blur group relative overflow-hidden rounded-2xl border border-border focus:outline-none focus:ring-2 focus:ring-gold ${
-                i % 5 === 0 ? "row-span-2 md:col-span-2 md:row-span-2" : ""
-              }`}
-              style={{ transitionDelay: `${(i % 4) * 80}ms` }}
+              className="reveal-zoom group relative mb-3 block w-full overflow-hidden rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
+              style={{ transitionDelay: `${(i % 4) * 60}ms` }}
             >
               <img
                 src={g.src}
                 alt={g.label}
-                width={800}
-                height={800}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                style={{ aspectRatio: i % 5 === 0 ? "1/1" : "1/1" }}
+                className="w-full transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100" />
-              <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">View Project</div>
-                <div className="mt-1 font-display text-sm font-bold uppercase text-foreground">{g.label}</div>
+              <div className="absolute inset-0 flex items-end bg-navy/0 p-3 transition-colors duration-300 group-hover:bg-navy/55">
+                <span className="translate-y-2 text-left text-xs font-bold uppercase tracking-wide text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  {g.label}
+                </span>
               </div>
             </button>
           ))}
         </div>
       </div>
 
+      {/* Lightbox */}
       {active !== null && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-navy/90 p-4 backdrop-blur-sm"
           onClick={() => setActive(null)}
         >
           <button
             aria-label="Close"
-            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full glass text-foreground"
+            className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20"
             onClick={() => setActive(null)}
           >
             <X className="h-5 w-5" />
           </button>
           <figure className="max-h-[88vh] max-w-5xl" onClick={(e) => e.stopPropagation()}>
-            <img src={gallery[active].src} alt={gallery[active].label} className="max-h-[80vh] w-auto rounded-2xl object-contain shadow-elev" />
-            <figcaption className="mt-4 text-center font-display text-sm font-bold uppercase tracking-wider text-gold">
+            <img
+              src={gallery[active].src}
+              alt={gallery[active].label}
+              className="max-h-[80vh] w-auto rounded-xl object-contain shadow-2xl"
+            />
+            <figcaption className="mt-4 text-center text-sm font-bold uppercase tracking-wider text-white/80">
               {gallery[active].label}
             </figcaption>
           </figure>
@@ -470,29 +467,29 @@ function Gallery() {
   );
 }
 
+/* ── Why Us ─────────────────────────────────────────────── */
 function WhyUs() {
   return (
-    <section id="why" className="relative py-24 lg:py-32">
-      <div
-        className="absolute inset-0 -z-10 opacity-60"
-        style={{ background: "radial-gradient(60% 50% at 50% 0%, oklch(0.25 0.10 25 / 0.45), transparent 70%)" }}
-      />
+    <section id="why" className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeader
-          eyebrow="Why Bright Core"
-          title={<>Why Homeowners <span className="text-gold">Choose Us</span></>}
-        />
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="reveal mb-14 max-w-2xl">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">Why Bright Core</span>
+          <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-navy sm:text-5xl">
+            Why homeowners choose us
+          </h2>
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {reasons.map((r, i) => (
             <div
               key={r.t}
-              className="reveal-blur group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-glow"
-              style={{ transitionDelay: `${(i % 4) * 50}ms` }}
+              className="reveal-zoom"
+              style={{ transitionDelay: `${(i % 4) * 60}ms` }}
             >
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-gold text-gold-foreground">
-                <r.icon className="h-6 w-6" />
+              <span className="font-display text-3xl font-bold text-orange/30">
+                {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-5 font-display text-base font-bold uppercase tracking-wider text-foreground">{r.t}</h3>
+              <h3 className="mt-3 font-display text-base font-bold text-navy">{r.t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.d}</p>
             </div>
           ))}
@@ -502,30 +499,86 @@ function WhyUs() {
   );
 }
 
+/* ── Process ────────────────────────────────────────────── */
+function Process() {
+  const steps = [
+    {
+      n: "01",
+      title: "Contact Us",
+      desc: "Call, message or fill in our form. We'll discuss your project with no obligation and no pressure.",
+    },
+    {
+      n: "02",
+      title: "Free Site Visit & Quote",
+      desc: "We come to you, assess the job in person, and provide a clear written quote — no hidden costs.",
+    },
+    {
+      n: "03",
+      title: "We Get to Work",
+      desc: "Your project starts on schedule. We keep you updated throughout and clean up daily.",
+    },
+  ];
+
+  return (
+    <section className="bg-surface py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="reveal mb-14 text-center">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">How It Works</span>
+          <h2 className="mt-4 font-display text-4xl font-bold text-navy sm:text-5xl">
+            Simple, straightforward process
+          </h2>
+        </div>
+
+        <div className="grid gap-px bg-border sm:grid-cols-3 overflow-hidden rounded-xl">
+          {steps.map((s, i) => (
+            <div
+              key={s.n}
+              className="reveal-zoom bg-background p-8 lg:p-10"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="font-display text-6xl font-bold text-orange/20">{s.n}</div>
+              <h3 className="mt-4 font-display text-xl font-bold text-navy">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Testimonials ───────────────────────────────────────── */
 function Testimonials() {
   return (
-    <section id="testimonials" className="relative py-24 lg:py-32">
+    <section id="testimonials" className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeader
-          eyebrow="Client Stories"
-          title={<>What Our <span className="text-gold">Customers Say</span></>}
-        />
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className="reveal mb-14 text-center">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">Client Stories</span>
+          <h2 className="mt-4 font-display text-4xl font-bold text-navy sm:text-5xl">What our customers say</h2>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
           {testimonials.map((t, i) => (
             <figure
               key={t.name}
-              className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} relative rounded-2xl border border-border bg-card p-6 shadow-elev sm:p-7`}
+              className={`${i % 2 === 0 ? "reveal-left" : "reveal-right"} rounded-xl border border-border bg-card p-7`}
               style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <Quote className="absolute right-6 top-6 h-10 w-10 text-gold/20" />
-              <div className="flex gap-1 text-gold">
+              {/* Large decorative quote */}
+              <div className="font-display text-7xl font-bold leading-none text-orange/15 select-none">&ldquo;</div>
+
+              <div className="mt-1 flex gap-0.5" aria-label="5 stars">
                 {Array.from({ length: 5 }).map((_, k) => (
-                  <Star key={k} className="h-4 w-4 fill-current" />
+                  <Star key={k} className="h-4 w-4 fill-orange text-orange" />
                 ))}
               </div>
-              <blockquote className="mt-4 text-base leading-relaxed text-foreground">"{t.text}"</blockquote>
+
+              <blockquote className="mt-4 text-base leading-relaxed text-foreground">
+                &ldquo;{t.text}&rdquo;
+              </blockquote>
+
               <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-gradient-red font-bold text-primary-foreground">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-navy font-display text-sm font-bold text-white">
                   {t.name.charAt(0)}
                 </div>
                 <div>
@@ -541,6 +594,7 @@ function Testimonials() {
   );
 }
 
+/* ── Contact ────────────────────────────────────────────── */
 function Contact() {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -568,7 +622,6 @@ function Contact() {
     const body = encodeURIComponent(
       `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService Needed: ${service}\n\nMessage:\n${message}`
     );
-    // Open the user's email client so the message is delivered to the business inbox.
     window.location.href = `mailto:corebright.construction@gmail.com?subject=${subject}&body=${body}`;
     setTimeout(() => {
       setLoading(false);
@@ -579,128 +632,137 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 lg:py-32">
-      <div
-        className="absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(80% 60% at 100% 0%, oklch(0.30 0.14 25 / 0.45), transparent 70%)" }}
-      />
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-8">
-        <div className="reveal-left">
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Free Estimate</span>
-          <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-tight tracking-tight sm:text-5xl">
-            Get Your <span className="text-gold">Free Estimate</span> Today
-          </h2>
-          <p className="mt-5 text-base text-muted-foreground">
-            Tell us about your project. We usually respond within a few hours during
-            working hours — no obligation, no pressure.
-          </p>
+    <section id="contact" className="bg-navy py-20 lg:py-28">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+          {/* Left: contact info */}
+          <div className="reveal-left">
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange">Get in Touch</span>
+            <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+              Let&apos;s talk about your project
+            </h2>
+            <p className="mt-4 text-base text-white/60">
+              Free estimates, fast response. We usually get back within a few hours during working hours.
+            </p>
 
-          <div className="mt-8 space-y-3">
-            <a href="tel:07405326484" className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-gold/50">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-red text-primary-foreground"><Phone className="h-5 w-5" /></span>
-              <span>
-                <span className="block text-xs uppercase tracking-wider text-muted-foreground">Zahid</span>
-                <span className="block font-display text-lg font-bold text-foreground">07405 326484</span>
-              </span>
-            </a>
-            <a href="tel:07985785177" className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-gold/50">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-red text-primary-foreground"><Phone className="h-5 w-5" /></span>
-              <span>
-                <span className="block text-xs uppercase tracking-wider text-muted-foreground">Asif</span>
-                <span className="block font-display text-lg font-bold text-foreground">07985 785177</span>
-              </span>
-            </a>
-            <a
-              href="https://wa.me/447405326484"
-              target="_blank" rel="noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-gold/50"
-            >
-              <span className="grid h-12 w-12 place-items-center rounded-xl text-white" style={{ background: "linear-gradient(135deg, #25D366, #128C7E)" }}>
-                <MessageCircleIcon />
-              </span>
-              <span>
-                <span className="block text-xs uppercase tracking-wider text-muted-foreground">WhatsApp</span>
-                <span className="block font-display text-lg font-bold text-foreground">Chat Now</span>
-              </span>
-            </a>
-            <a href="mailto:corebright.construction@gmail.com" className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-gold/50">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-gold text-gold-foreground"><Mail className="h-5 w-5" /></span>
-              <span>
-                <span className="block text-xs uppercase tracking-wider text-muted-foreground">Email</span>
-                <span className="block font-display text-sm font-bold text-foreground sm:text-base">corebright.construction@gmail.com</span>
-              </span>
-            </a>
-            <div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-secondary text-gold"><MapPin className="h-5 w-5" /></span>
-              <span>
-                <span className="block text-xs uppercase tracking-wider text-muted-foreground">Service Area</span>
-                <span className="block font-display text-lg font-bold text-foreground">London & Surrounding Areas</span>
-              </span>
+            {/* Large phone numbers */}
+            <div className="mt-10 space-y-6">
+              <a href="tel:07405326484" className="group block">
+                <span className="text-xs uppercase tracking-widest text-white/40">Zahid</span>
+                <div className="mt-1 font-display text-4xl font-bold text-white transition-colors group-hover:text-orange sm:text-5xl">
+                  07405 326484
+                </div>
+              </a>
+              <a href="tel:07985785177" className="group block">
+                <span className="text-xs uppercase tracking-widest text-white/40">Asif</span>
+                <div className="mt-1 font-display text-4xl font-bold text-white transition-colors group-hover:text-orange sm:text-5xl">
+                  07985 785177
+                </div>
+              </a>
             </div>
-          </div>
-        </div>
 
-        <form
-          onSubmit={onSubmit}
-          className="reveal-right glass rounded-3xl p-6 shadow-elev sm:p-8"
-        >
-          <h3 className="font-display text-2xl font-extrabold uppercase tracking-tight text-foreground">Request A Quote</h3>
-          <p className="mt-1 text-sm text-muted-foreground">All fields marked * are required.</p>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <Field label="Full Name *" name="name" placeholder="Your name" />
-            <Field label="Phone Number *" name="phone" type="tel" placeholder="07…" />
-            <div className="sm:col-span-2">
-              <Field label="Email *" name="email" type="email" placeholder="you@example.com" />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">Service Needed *</label>
-              <select
-                name="service"
-                required
-                defaultValue=""
-                className="mt-2 w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-gold"
+            {/* Secondary contacts */}
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="https://wa.me/447405326484?text=Hi%20Bright%20Core%20Construction%2C%20I%27d%20like%20a%20free%20estimate."
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold text-white"
+                style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
               >
-                <option value="" disabled>Select a service</option>
-                {serviceCategories.flatMap((c) => c.items).map((name) => <option key={name}>{name}</option>)}
-                <option>Other / Multiple</option>
-              </select>
+                <WhatsAppIcon /> WhatsApp Us
+              </a>
+              <a
+                href="mailto:corebright.construction@gmail.com"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/60 transition-colors hover:text-white"
+              >
+                <Mail className="h-4 w-4" />
+                corebright.construction@gmail.com
+              </a>
             </div>
-            <div className="sm:col-span-2">
-              <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">Message</label>
-              <textarea
-                name="message"
-                rows={4}
-                placeholder="Tell us a bit about your project, postcode and ideal timeline…"
-                className="mt-2 w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-gold"
-              />
+
+            <div className="mt-6 flex items-center gap-3 text-sm text-white/50">
+              <MapPin className="h-4 w-4 shrink-0" />
+              Serving Barking, Ilford, Romford, Walthamstow &amp; across London
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-red px-6 py-4 font-display text-sm font-bold uppercase tracking-[0.18em] text-primary-foreground shadow-glow transition-transform hover:scale-[1.01] disabled:opacity-70"
+          {/* Right: form */}
+          <form
+            onSubmit={onSubmit}
+            className="reveal-right rounded-xl bg-white p-7 shadow-lg sm:p-8"
           >
-            {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : <>Request Free Quote <ArrowRight className="h-4 w-4" /></>}
-          </button>
+            <h3 className="font-display text-2xl font-bold text-navy">Request a Free Quote</h3>
+            <p className="mt-1 text-sm text-muted-foreground">All fields marked * are required.</p>
 
-          {done && (
-            <div className="mt-5 flex items-start gap-3 rounded-xl border border-gold/40 bg-gold/10 p-4 text-sm">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-              <div className="text-foreground">
-                Thanks — we've prepared your enquiry. If your email app didn't open, please
-                call <a className="font-bold text-gold" href="tel:07405326484">07405 326484</a>.
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <Field label="Full Name *" name="name" placeholder="Your name" />
+              <Field label="Phone Number *" name="phone" type="tel" placeholder="07…" />
+              <div className="sm:col-span-2">
+                <Field label="Email *" name="email" type="email" placeholder="you@example.com" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Service Needed *
+                </label>
+                <select
+                  name="service"
+                  required
+                  defaultValue=""
+                  className="mt-2 w-full rounded-md border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-navy"
+                >
+                  <option value="" disabled>Select a service</option>
+                  {serviceCategories.flatMap((c) => c.items).map((n) => (
+                    <option key={n}>{n}</option>
+                  ))}
+                  <option>Other / Multiple</option>
+                </select>
+              </div>
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={4}
+                  placeholder="Tell us a bit about your project, postcode and ideal timeline…"
+                  className="mt-2 w-full rounded-md border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-navy"
+                />
               </div>
             </div>
-          )}
-        </form>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-orange px-6 py-4 font-display text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+            >
+              {loading ? (
+                <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
+              ) : (
+                <>Request Free Quote <ArrowRight className="h-4 w-4" /></>
+              )}
+            </button>
+
+            {done && (
+              <div className="mt-5 flex items-start gap-3 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
+                <span>
+                  Thanks — your enquiry is prepared. If your email app didn&apos;t open, please call{" "}
+                  <a className="font-bold underline" href="tel:07405326484">07405 326484</a>.
+                </span>
+              </div>
+            )}
+          </form>
+        </div>
       </div>
     </section>
   );
 }
 
-function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
+/* ── Field ──────────────────────────────────────────────── */
+function Field({ label, name, type = "text", placeholder }: {
+  label: string; name: string; type?: string; placeholder?: string;
+}) {
   return (
     <div>
       <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}</label>
@@ -709,41 +771,56 @@ function Field({ label, name, type = "text", placeholder }: { label: string; nam
         type={type}
         required={label.includes("*")}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-gold"
+        className="mt-2 w-full rounded-md border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-navy"
       />
     </div>
   );
 }
 
-function MessageCircleIcon() {
+/* ── WhatsApp Icon ──────────────────────────────────────── */
+function WhatsAppIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-      <path d="M20 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-4.7A8.5 8.5 0 1 1 20 11.5z" stroke="currentColor" strokeWidth="0" />
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+      <path d="M20 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-4.7A8.5 8.5 0 1 1 20 11.5z" />
     </svg>
   );
 }
 
+/* ── Footer ─────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="border-t border-border bg-card/40">
+    <footer className="bg-navy border-t border-white/10">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <img src={logo} alt="Bright Core Construction" width={240} height={64} className="h-10 w-auto" loading="lazy" />
-          <p className="mt-4 text-sm text-muted-foreground">
+          <img
+            src={logo}
+            alt="Bright Core Construction"
+            width={220}
+            height={64}
+            className="h-10 w-auto"
+            loading="lazy"
+          />
+          <p className="mt-4 text-sm text-white/50">
             For all your building work undertaken with guarantee.
           </p>
         </div>
+
         <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-gold">Contact</h4>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><a href="tel:07405326484" className="hover:text-foreground">Zahid — 07405 326484</a></li>
-            <li><a href="tel:07985785177" className="hover:text-foreground">Asif — 07985 785177</a></li>
-            <li><a href="mailto:corebright.construction@gmail.com" className="hover:text-foreground break-all">corebright.construction@gmail.com</a></li>
+          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-orange">Contact</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/55">
+            <li><a href="tel:07405326484" className="hover:text-white transition-colors">Zahid — 07405 326484</a></li>
+            <li><a href="tel:07985785177" className="hover:text-white transition-colors">Asif — 07985 785177</a></li>
+            <li>
+              <a href="mailto:corebright.construction@gmail.com" className="hover:text-white transition-colors break-all">
+                corebright.construction@gmail.com
+              </a>
+            </li>
           </ul>
         </div>
+
         <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-gold">Top Services</h4>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-orange">Top Services</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/55">
             <li>Loft Conversions</li>
             <li>Kitchen Extensions</li>
             <li>Roofing & Guttering</li>
@@ -751,18 +828,23 @@ function Footer() {
             <li>Brick & Block Work</li>
           </ul>
         </div>
+
         <div>
-          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-gold">Get a Free Quote</h4>
-          <p className="mt-4 text-sm text-muted-foreground">Honest pricing, guaranteed workmanship, fast turnaround.</p>
-          <a href="#contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-red px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-glow">
+          <h4 className="font-display text-sm font-bold uppercase tracking-wider text-orange">Free Estimate</h4>
+          <p className="mt-4 text-sm text-white/55">Honest pricing, guaranteed workmanship, fast turnaround.</p>
+          <a
+            href="#contact"
+            className="mt-5 inline-flex items-center gap-2 rounded-md bg-orange px-5 py-2.5 text-xs font-bold text-white transition-opacity hover:opacity-90"
+          >
             Request Estimate <ArrowRight className="h-3.5 w-3.5" />
           </a>
         </div>
       </div>
-      <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs text-muted-foreground sm:flex-row lg:px-8">
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-xs text-white/35 sm:flex-row lg:px-8">
           <span>© {new Date().getFullYear()} Bright Core Construction. All rights reserved.</span>
-          <span>Serving London & surrounding areas</span>
+          <span>Serving Barking, East London &amp; surrounding areas</span>
         </div>
       </div>
     </footer>
