@@ -12,6 +12,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { useReveal } from "@/hooks/use-reveal";
 
 import hero from "@/assets/hero-construction.jpg";
+import logo from "@/assets/logo-bright-core.png";
 import imgLoft from "@/assets/project-loft.jpg";
 import imgBath from "@/assets/project-bathroom.jpg";
 import imgBrick from "@/assets/project-brickwork.jpg";
@@ -26,11 +27,85 @@ import imgRoof from "@/assets/project-roofing.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bright Core Construction — Loft Conversions, Extensions & Building Services London" },
-      { name: "description", content: "Trusted London builders. Loft conversions, extensions, roofing, bathrooms, brickwork, driveways & full renovations. Free estimates. Guaranteed work." },
-      { property: "og:title", content: "Bright Core Construction — London Builders" },
-      { property: "og:description", content: "Premium building & renovation services across London. Free estimates. Guaranteed workmanship." },
+      { title: "Bright Core Construction | Builders in Barking, Upney & London" },
+      { name: "description", content: "Bright Core Construction — trusted builders in Barking, Upney and across London. Loft conversions, extensions, roofing, bathrooms, brickwork, driveways & renovations. Free estimates. Guaranteed workmanship. Call 07405 326484." },
+      { name: "keywords", content: "Bright Core Construction, builders Barking, construction Upney, construction near me, builders London, loft conversion London, kitchen extension Barking, roofing Upney, bathroom fitters London, brickwork East London, driveways Barking, builders near me, house extension London, plastering, fencing, conservatory, renovation contractors London" },
+      { name: "geo.region", content: "GB-LND" },
+      { name: "geo.placename", content: "Barking, London" },
+      { name: "author", content: "Bright Core Construction" },
+      { property: "og:title", content: "Bright Core Construction | Builders in Barking, Upney & London" },
+      { property: "og:description", content: "Loft conversions, extensions, roofing, bathrooms, brickwork & driveways across Barking, Upney & London. Free estimates, guaranteed workmanship." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://brightcore.lumiflo.co.uk/" },
+      { property: "og:locale", content: "en_GB" },
+      { property: "og:site_name", content: "Bright Core Construction" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Bright Core Construction | Builders in Barking, Upney & London" },
+      { name: "twitter:description", content: "Loft conversions, extensions, roofing, bathrooms & more across Barking, Upney & London. Free estimates." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://brightcore.lumiflo.co.uk/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "GeneralContractor",
+          "@id": "https://brightcore.lumiflo.co.uk/#business",
+          name: "Bright Core Construction",
+          description:
+            "Trusted London builders specialising in loft conversions, extensions, roofing, bathrooms, brickwork, driveways and full renovations. Serving Barking, Upney, Ilford, Romford, Walthamstow and surrounding London areas.",
+          url: "https://brightcore.lumiflo.co.uk/",
+          telephone: ["+447405326484", "+447985785177"],
+          email: "corebright.construction@gmail.com",
+          image: "https://brightcore.lumiflo.co.uk/favicon-512.png",
+          logo: "https://brightcore.lumiflo.co.uk/favicon-512.png",
+          priceRange: "££",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Barking",
+            addressRegion: "London",
+            addressCountry: "GB",
+          },
+          areaServed: [
+            { "@type": "City", name: "London" },
+            { "@type": "Place", name: "Barking" },
+            { "@type": "Place", name: "Upney" },
+            { "@type": "Place", name: "Ilford" },
+            { "@type": "Place", name: "Romford" },
+            { "@type": "Place", name: "Walthamstow" },
+            { "@type": "Place", name: "East London" },
+          ],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "07:00",
+              closes: "19:00",
+            },
+          ],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Building & Renovation Services",
+            itemListElement: [
+              "Loft Conversions", "Kitchen Extensions", "Conservatories",
+              "Brick & Block Work", "Roofing & Guttering", "Driveways & Slabs",
+              "Plastering & Skimming", "Wall & Floor Tiling", "Wood Flooring",
+              "Bathroom Fitting", "Carpentry", "Plumbing", "Electrical",
+              "Painting & Decorating", "Fencing", "Gardening", "Patios & Sheds",
+            ].map((s) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: s, areaServed: "London" },
+            })),
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5.0",
+            reviewCount: "4",
+          },
+        }),
+      },
     ],
   }),
   component: HomePage,
@@ -155,7 +230,7 @@ function Hero() {
               href="#contact"
               className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-red px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] sm:w-auto"
             >
-              Get Your Free Estimate
+              Get a Quote
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
@@ -653,13 +728,7 @@ function Footer() {
     <footer className="border-t border-border bg-card/40">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-red font-black text-primary-foreground shadow-glow">B</span>
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-base font-bold tracking-wide text-foreground">BRIGHT CORE</span>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-gold">Construction</span>
-            </span>
-          </div>
+          <img src={logo} alt="Bright Core Construction" width={240} height={64} className="h-10 w-auto" loading="lazy" />
           <p className="mt-4 text-sm text-muted-foreground">
             For all your building work undertaken with guarantee.
           </p>

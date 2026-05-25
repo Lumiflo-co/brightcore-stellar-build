@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
+import logo from "@/assets/logo-bright-core.png";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -43,18 +44,14 @@ export function SiteNav() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-5 lg:px-8">
-        <a href="#top" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-red font-black text-primary-foreground shadow-glow">
-            B
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-base font-bold tracking-wide text-foreground">
-              BRIGHT CORE
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-gold">
-              Construction
-            </span>
-          </span>
+        <a href="#top" className="flex items-center" aria-label="Bright Core Construction — Home">
+          <img
+            src={logo}
+            alt="Bright Core Construction"
+            width={220}
+            height={60}
+            className="h-9 w-auto sm:h-10 lg:h-11"
+          />
         </a>
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
@@ -69,10 +66,10 @@ export function SiteNav() {
         </nav>
         <div className="flex items-center gap-3">
           <a
-            href="tel:07405326484"
-            className="hidden items-center gap-2 rounded-full bg-gradient-red px-4 py-2 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] md:inline-flex"
+            href="#contact"
+            className="hidden items-center gap-2 rounded-full bg-gradient-red px-5 py-2 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] md:inline-flex"
           >
-            <Phone className="h-4 w-4" /> 07405 326484
+            Get a Quote
           </a>
           <button
             aria-label={open ? "Close menu" : "Open menu"}
@@ -118,9 +115,17 @@ export function SiteNav() {
             <a
               href="tel:07405326484"
               style={{ animationDelay: `${60 + links.length * 45}ms` }}
-              className="menu-item-anim mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-red px-4 py-3 text-sm font-semibold text-primary-foreground shadow-glow"
+              className="menu-item-anim mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-background/40 px-4 py-3 text-sm font-semibold text-gold"
             >
               <Phone className="h-4 w-4" /> Call 07405 326484
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              style={{ animationDelay: `${60 + (links.length + 1) * 45}ms` }}
+              className="menu-item-anim inline-flex items-center justify-center gap-2 rounded-full bg-gradient-red px-4 py-3 text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-glow"
+            >
+              Get a Quote
             </a>
           </div>
         </div>
