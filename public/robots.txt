@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brightcore.lumiflo.co.uk/sitemap.xml
